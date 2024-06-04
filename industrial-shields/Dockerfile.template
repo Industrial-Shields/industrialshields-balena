@@ -1,0 +1,65 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-python:latest
+
+ENV INITSYSTEM on
+ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
+
+
+RUN apt-get update && apt-get install -yq \
+  build-essential \
+  python3-serial \
+  python3-websockets \
+  python3-aiofiles \
+  cmake \
+  g++ \
+  make \
+  python-dev \
+  libatomic1 \
+  git \
+  systemd-sysv \
+  openssh-client \
+  minicom \
+  libc6 \
+  && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install both DBus and systemd support to run systemctl hw-config
+RUN install_packages dbus systemd
+
+# Industrial Shields rpi instructions
+
+RUN curl -L https://apps.industrialshields.com/main/rpi_experimental/rpiplc/hw-config.service -o /lib/systemd/system/hw-config.service
+RUN curl -L https://apps.industrialshields.com/main/rpi_experimental/rpiplc/blobs64/hw-config -o /usr/local/bin/hw-config
+RUN chmod ugo+x /usr/local/bin/hw-config
+
+RUN systemctl enable hw-config.service
+
+# Download SC16IS752 dtbo
+#RUN curl -L https://apps.industrialshields.com/main/rpi/rpiplc_click_v4/sc16is752-spi1-rpiplc-v4.dtbo -o /boot/overlays/sc16is752-spi1-rpiplc-v4.dtbo
+
+# Build the librpiplc library
+
+RUN git clone -b v3.0.2 https://github.com/Industrial-Shields/librpiplc.git && \ 
+    cd librpiplc/ && \
+    cmake -B build/ -DPLC_VERSION=RPIPLC_V6 -DPLC_MODEL=ALL && \
+    cmake --build ./build -- -j $(nproc) && \
+    cmake --install ./build && \
+    ldconfig
+
+# Install the python3-librpiplc library
+
+ RUN git clone -b v3.0.2 https://github.com/Industrial-Shields/python3-librpiplc && \
+    cd python3-librpiplc && \
+    python3 -m pip install . 
+
+
+
+# Defines our working directory in container
+WORKDIR /usr/src/app
+
+# This will copy all files in our root to the working  directory in the container
+COPY ./* ./
+
+# Enable udev for detection of dynamically plugged devices
+ENV UDEV=1
+
+# server.js will run when container starts up on the device
+CMD ["bash", "start.sh"]
