@@ -25,14 +25,14 @@ RUN install_packages dbus systemd
 
 # Industrial Shields rpi instructions
 
-RUN curl -L https://apps.industrialshields.com/main/rpi_experimental/rpiplc/hw-config.service -o /lib/systemd/system/hw-config.service
-RUN curl -L https://apps.industrialshields.com/main/rpi_experimental/rpiplc/blobs64/hw-config -o /usr/local/bin/hw-config
+#RUN curl -L https://apps.industrialshields.com/main/rpi_experimental/rpiplc/hw-config.service -o /lib/systemd/system/hw-config.service
+#RUN curl -L https://apps.industrialshields.com/main/rpi_experimental/rpiplc/blobs64/hw-config -o /usr/local/bin/hw-config
+RUN curl -L https://apps.industrialshields.com/main/rpi64/rpiplc/hw-config -o /usr/local/bin/hw-config
 RUN chmod ugo+x /usr/local/bin/hw-config
 
-RUN systemctl enable hw-config.service
+#RUN systemctl enable hw-config.service
+#RUN systemctl enable hw-config
 
-# Download SC16IS752 dtbo
-#RUN curl -L https://apps.industrialshields.com/main/rpi/rpiplc_click_v4/sc16is752-spi1-rpiplc-v4.dtbo -o /boot/overlays/sc16is752-spi1-rpiplc-v4.dtbo
 
 # Build the librpiplc library
 
@@ -48,7 +48,6 @@ RUN git clone -b v3.0.2 https://github.com/Industrial-Shields/librpiplc.git && \
  RUN git clone -b v3.0.2 https://github.com/Industrial-Shields/python3-librpiplc && \
     cd python3-librpiplc && \
     python3 -m pip install . 
-
 
 
 # Defines our working directory in container

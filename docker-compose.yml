@@ -3,6 +3,36 @@ version: '2.1'
 services:
   
   # ------------------------------------------------------------------------------------
+  # Node-RED
+  # ------------------------------------------------------------------------------------
+#   node-red:
+#     build: ./node-red 
+#     privileged: true
+#     restart: unless-stopped
+#     depends_on:
+#         - industrial-shields
+#     volumes:
+#         - 'node-red-data:/data'
+#     labels:
+#         io.balena.features.dbus: '1'
+#         io.balena.features.sysfs: '1'
+#         io.balena.features.supervisor-api: '1'
+#         io.balena.features.balena-api: '1'
+#         io.balena.features.balena-socket: '1'
+#         io.balena.features.kernel-modules: '1'
+#         io.balena.features.firmware: '1'
+#     ports:
+#         - 80:80
+#     environment:
+#         - PORT=80
+#         - USERNAME="balena"
+#         - PASSWORD="balena"
+#         - ENCRIPTION_KEY="balena"
+#         - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
+#     cap_add:
+#         - SYS_RAWIO
+
+  # ------------------------------------------------------------------------------------
   # Industrial Shields PLC for RPi
   # ------------------------------------------------------------------------------------
   industrial-shields:
@@ -29,3 +59,5 @@ services:
         - "/dev/ttySC2:/dev/ttySC2"
         - "/dev/ttySC3:/dev/ttySC3"
 
+volumes:
+  node-red-data:
