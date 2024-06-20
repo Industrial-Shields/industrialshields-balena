@@ -25,14 +25,8 @@ RUN install_packages dbus systemd
 
 # Industrial Shields rpi instructions
 
-#RUN curl -L https://apps.industrialshields.com/main/rpi_experimental/rpiplc/hw-config.service -o /lib/systemd/system/hw-config.service
-#RUN curl -L https://apps.industrialshields.com/main/rpi_experimental/rpiplc/blobs64/hw-config -o /usr/local/bin/hw-config
-RUN curl -L https://apps.industrialshields.com/main/rpi64/rpiplc/hw-config -o /usr/local/bin/hw-config
+RUN curl -L https://apps.industrialshields.com/main/rpi_experimental/rpiplc/blobs64/hw-config -o /usr/local/bin/hw-config
 RUN chmod ugo+x /usr/local/bin/hw-config
-
-#RUN systemctl enable hw-config.service
-#RUN systemctl enable hw-config
-
 
 # Build the librpiplc library
 
