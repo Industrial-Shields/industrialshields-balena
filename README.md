@@ -63,7 +63,8 @@ Once the release is successfully built on your fleet in balenaCloud, click `Add 
 
 And select the device type `Raspberry Pi 4 (using 64bit OS)` balenaOS version. Add the Wi-Fi credentials if needed, and click `Flash` or `Download` the balenaOS image.
 
-![Flash balenaOS](https://github.com/mpous/industrialshields-balena/assets/173156/93c22464-c725-4853-bc95-00d3f469da9e)
+![Flash balenaOS](https://github.com/mpous/industrialshields-balena/assets/173156/651ee471-9104-4307-9ceb-094a36a70113)
+
 
 Use balenaEtcher to flash the SD card with the balenaOS image.
 
