@@ -12,11 +12,13 @@ The balena platform enables provisioning, updating the software and OS, and mana
 
 ## Requirements
 
-For this project I'm using: 
+### Hardware
 
 * the [Industrial Shields PLC Raspberry Pi 4 v4 Model 21](https://www.industrialshields.com/es_ES/shop/raspberry-plc-21-2230?attrib=73-416&view_mode=grid#attr=2607,702,743,4073,534,7119,7120,143,5807,4218,4219,4220)
 * the [Industrial Shields Power Supply](https://www.industrialshields.com/es_ES/shop/is-ac12vdc2-5adin-fuente-alimentacion-carril-din-30w-12v-salida-659?attrib=49-456&view_mode=grid#attr=3657)
 * a Modbus Temperature and Humidity sensor 
+
+### Software
 
 * a [balena account](https://dashboard.balena-cloud.com/signup) - free for up to 10 devices
 * [balenaEtcher](https://etcher.balena.io/)
@@ -54,13 +56,14 @@ cd industrialshields-balena
 - Using [Balena CLI](https://www.balena.io/docs/reference/cli/), push the code with `balena push <your-fleet-name>`
 - See the magic happening, your device is getting updated 🌟Over-The-Air🌟!
 
+
 ## Add a device
 
 Once the release is successfully built on your fleet in balenaCloud, click `Add device`.
 
 And select the device type `Raspberry Pi 4 (using 64bit OS)` balenaOS version. Add the Wi-Fi credentials if needed, and click `Flash` or `Download` the balenaOS image.
 
-[IMAGE]
+![Flash balenaOS](https://github.com/mpous/industrialshields-balena/assets/173156/93c22464-c725-4853-bc95-00d3f469da9e)
 
 Use balenaEtcher to flash the SD card with the balenaOS image.
 
@@ -70,7 +73,7 @@ Download the Industrial Shields Raspberry Pi PLC `dtbo` overlay file to add to t
 
 Once flashed, connect the SD to your computer to add an extra `dtbo` file into the `overlays` folder of the balenaOS. The unit is called `resin-boot`.
 
-[IMAGE]
+![Industrial Shields dtbo](https://github.com/mpous/industrialshields-balena/assets/173156/734b42c7-2879-47c9-be24-0ea2e3571f44)
 
 Once the file is properly saved on the SD card, connect the SD card into the Rasberry Pi 4 PLC and power it up.
 
@@ -90,15 +93,15 @@ USERNAME | `balena` | the Node-RED admin username
 PASSWORD | `balena` | the Node-RED admin password
 ENCRIPTION_KEY | `balena` | the encription key used to store your credentials files
 
-[image]
-
 You **must** set the `USERNAME` and `PASSWORD` variables to be able to access, save or run programs in Node-RED.  
+
+![balenaCloud Device Variables](https://github.com/mpous/industrialshields-balena/assets/173156/f219e049-1efc-4b5f-baf4-79c4a5f21c13)
 
 #### Add the rpiplc node
 
 Once you access to the Node-RED UI, go to the top-right menu and click `Manage pallette` and then go to the `Install` tab to find and install the Industrial Shields PLC node.
 
-[IMAGE]
+![Industrial Shields librpiplc](https://github.com/mpous/industrialshields-balena/assets/173156/3b79f2c0-3f87-45d5-b2e9-5cb249bc34c8)
 
 Search `librpiplc` and you might find the industrial shields bindings for Node-RED. Click install.
 
