@@ -33,7 +33,7 @@ You have two options here:
 
 Use the button below to create your fleet (of one or more devices) and deploy the code.
 
-[![](https://balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/mpous/industrialshields-balena)
+[![](https://balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/Industrial-Shields/industrialshields-balena)
 
 If you don't have a balenaCloud account, no worries, you will create it after clicking the `Deploy with balena` button.
 
@@ -63,7 +63,7 @@ Once the release is successfully built on your fleet in balenaCloud, click `Add 
 
 And select the device type `Raspberry Pi 4 (using 64bit OS)` balenaOS version. Add the Wi-Fi credentials if needed, and click `Flash` or `Download` the balenaOS image.
 
-![Flash balenaOS](https://github.com/mpous/industrialshields-balena/assets/173156/651ee471-9104-4307-9ceb-094a36a70113)
+![Flash balenaOS](https://github.com/Industrial-Shields/industrialshields-balena/assets/173156/651ee471-9104-4307-9ceb-094a36a70113)
 
 Use balenaEtcher to flash the SD card with the balenaOS image.
 
