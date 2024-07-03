@@ -81,9 +81,11 @@ Once the file is properly saved on the SD card, connect the SD card into the Ras
 
 Define the DT Overlays to enable all the I/O capabilities of the PLC.
 
-Edit the `Define DT overlays` field and introduce these device tree overlays: `"vc4-kms-v3d","spi0-2cs,cs0_pin=7,cs1_pin=8","w5500,cs=0,int_pin=6,speed=10000000","i2c-rtc,ds3231","sc16is752-spi1-rpiplc-v4,xtal=14745600"`.
+* Edit the `Define DT overlays` field and introduce these device tree overlays: `"vc4-kms-v3d","spi0-2cs,cs0_pin=7,cs1_pin=8","w5500,cs=0,int_pin=6,speed=10000000","i2c-rtc,ds3231","sc16is752-spi1-rpiplc-v4,xtal=14745600"`.
 
-Edit the `Allows GPIO pins to be set to specific modes and values at boot time.` and add these parameters: `"8=pd","16=pu"`.
+* Edit the `Define DT parameters for the default overlay` with: `"spi=on","i2c_arm=on"`.
+
+* Edit the `Allows GPIO pins to be set to specific modes and values at boot time.` and add these parameters: `"8=pd","16=pu"`.
 
 ![balenaCloud Define DT Overlays](https://github.com/mpous/industrialshields-balena/assets/173156/3c6f40f8-09fc-41ab-9e3b-d26d76278b52)
 
