@@ -65,7 +65,6 @@ And select the device type `Raspberry Pi 4 (using 64bit OS)` balenaOS version. A
 
 ![Flash balenaOS](https://github.com/mpous/industrialshields-balena/assets/173156/651ee471-9104-4307-9ceb-094a36a70113)
 
-
 Use balenaEtcher to flash the SD card with the balenaOS image.
 
 ### Add the custom dtbo of Industrial Shields
@@ -78,6 +77,22 @@ Once flashed, connect the SD to your computer to add an extra `dtbo` file into t
 
 Once the file is properly saved on the SD card, connect the SD card into the Rasberry Pi 4 PLC and power it up.
 
+### Configure the DT Overlay
+
+Define the DT Overlays to enable all the I/O capabilities of the PLC.
+
+Edit the `Define DT overlays` field and introduce these device tree overlays: `"vc4-kms-v3d","spi0-2cs,cs0_pin=7,cs1_pin=8","w5500,cs=0,int_pin=6,speed=10000000","i2c-rtc,ds3231","sc16is752-spi1-rpiplc-v4,xtal=14745600"`.
+
+Edit the `Allows GPIO pins to be set to specific modes and values at boot time.` and add these parameters: `"8=pd","16=pu"`.
+
+![balenaCloud Define DT Overlays](https://github.com/mpous/industrialshields-balena/assets/173156/3c6f40f8-09fc-41ab-9e3b-d26d76278b52)
+
+If you are running a fleet of devices, you should do this from the Fleet level in the Fleet `Configuration` section. Then all the devices from your fleet will inherit the DT overlays and parameters.
+
+
+## Run the application
+
+In this case, we are deploying Node-RED along the necessary libraries to run the Industrial Shields libaries and drivers.
 
 ### Node-RED
 
